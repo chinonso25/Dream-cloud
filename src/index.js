@@ -9,13 +9,13 @@ require('firebase/auth')
 
 
 const firebaseConfig = firebase.initializeApp({
-    apiKey: "AIzaSyBRftr4EbxAlthu_nUkQb9PcMLubOJhkk0",
-    authDomain: "dreamcloud-ce36b.firebaseapp.com",
-    databaseURL: "https://dreamcloud-ce36b.firebaseio.com",
-    projectId: "dreamcloud-ce36b",
-    storageBucket: "dreamcloud-ce36b.appspot.com",
-    messagingSenderId: "339117687013",
-    appId: "1:339117687013:web:92c5eb465ebfe975"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
+    databaseURL: process.env.REACT_APP_FIREBASE_DATABASE,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID
   });
 
   
