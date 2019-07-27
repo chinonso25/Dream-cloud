@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import * as firebase from 'firebase'
+import firebaseConfig from '../index'
 
 export class Notes extends Component {
     
@@ -8,7 +9,8 @@ export class Notes extends Component {
     }
 
     removeNote (id) {
-        firebase.database().ref('users/' + 'Chinonso').child(id).remove();
+        let user = firebaseConfig.auth().currentUser;
+        firebase.database().ref(`users/${user.uid}`).child(id).remove();
     }
 
     render() {
@@ -17,7 +19,7 @@ export class Notes extends Component {
                 <h3>Dreams</h3>
                 <div className="notes">
                     {this.props.notes.map(note => (
-                        console.log(note),
+
 
                         <div  className="note" key={note.id}>
                             <div className="note-title">

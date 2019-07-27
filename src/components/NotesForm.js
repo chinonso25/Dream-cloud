@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
+import firebaseConfig from '../index';
+
 var moment = require('moment');
 
 export class NotesForm extends Component {
@@ -20,9 +22,22 @@ export class NotesForm extends Component {
     });
   }
 
+  componentDidMount(){
+    this.db= firebase.database();
+    let user = firebaseConfig.auth().currentUser;
+    this.setState({
+        username: user.uid,
+
+    })
+    
+    
+    
+    
+  }
+
   createNote () {
     if (this.state.title !== '' && this.state.note !== '') {
-      firebase.database().ref('users/' + 'Chinonso').push({
+      firebase.database().ref(`users/${this.state.username}`).push({
         title: this.state.title,
         note: this.state.note,
         date: moment().format('MMMM Do YYYY')

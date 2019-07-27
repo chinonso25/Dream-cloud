@@ -4,9 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import * as firebase from 'firebase';
+require('firebase/auth')
 
 
-const firebaseConfig = {
+const firebaseConfig = firebase.initializeApp({
     apiKey: "AIzaSyBRftr4EbxAlthu_nUkQb9PcMLubOJhkk0",
     authDomain: "dreamcloud-ce36b.firebaseapp.com",
     databaseURL: "https://dreamcloud-ce36b.firebaseio.com",
@@ -14,9 +15,12 @@ const firebaseConfig = {
     storageBucket: "dreamcloud-ce36b.appspot.com",
     messagingSenderId: "339117687013",
     appId: "1:339117687013:web:92c5eb465ebfe975"
-  };
+  });
+
+  
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+
+  export default firebaseConfig;
 
 
 

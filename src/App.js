@@ -1,8 +1,17 @@
 import React from 'react';
 import * as firebase from 'firebase';
 import Header from './components/Header';
-import NotesForm from './components/NotesForm';
-import Notes from './components/Notes';
+import Dreams from './pages/Dreams';
+import { AuthProvider } from "./Auth";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import PrivateRoute from "./constants/PrivateRoute";
+import firebaseConfig from './'
+
+
+
+
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { tsConstructorType } from '@babel/types';
 
 
@@ -18,51 +27,25 @@ class App extends React.Component {
 
   componentDidMount(){
     this.db= firebase.database();
-    
-    
-    this.listenforChange();
+ 
     
   }
 
 
-  listenforChange() {
-    this.db.ref(`users/${this.state.username}`).on('child_added', snapshot => {
-      let note = {
-        id: snapshot.key,
-        title: snapshot.val().title,
-        note: snapshot.val().note,
-        date: snapshot.val().date,
-
-      }
-      let notes = this.state.notes;
-      notes.push(note)
-
-      this.setState({
-        notes: notes
-      });
-
-    })
-
-
-    this.db.ref(`users/${this.state.username}`).on('child_removed', snapshot => {
-      let notes = this.state.notes;
-      notes = notes.filter(note => note.id !== snapshot.key)
-      this.setState({
-        notes: notes
-      });
-
-    })
-  }
+  
 
 render(){
   return (
-    <div className="App">
-      <Header />
-      <main>
-        <NotesForm />
-        <Notes notes={this.state.notes}/>
-      </main>
-    </div>
+    <AuthProvider>
+    <Router>
+      <div>
+        <Header />
+        <PrivateRoute exact path="/" component={Dreams} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUp} />
+      </div>
+    </Router>
+    </AuthProvider>
   );
 }
 }
