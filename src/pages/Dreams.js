@@ -5,8 +5,7 @@ import NotesForm from '../components/NotesForm';
 import Notes from '../components/Notes';
 import Header from '../components/Header'
 
-import { BrowserRouter as Router, Route} from 'react-router-dom';
-import { tsConstructorType } from '@babel/types';
+import { BrowserRouter as Router} from 'react-router-dom';
 
 
 class Dreams extends React.Component {

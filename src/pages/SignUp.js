@@ -5,7 +5,6 @@ import Header from '../components/Header'
 import Buttons from '../components/Buttons'
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
 

@@ -4,7 +4,6 @@ import firebaseConfig from '../index';
 import Buttons from '../components/Buttons'
 import Divider from '@material-ui/core/Divider';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 
@@ -33,7 +32,7 @@ export class NotesForm extends Component {
 
   onChangeHandler (evt, key) {
     this.setState({
-      [key]: evt.target.value
+      [key]: evt.target.value,    
     });
   }
 
@@ -57,7 +56,12 @@ export class NotesForm extends Component {
         note: this.state.note,
         date: moment().format('MMMM Do YYYY')
       })
-      this.forceUpdate()    }
+      this.setState({
+        title: '',
+        note: '', 
+  
+      });
+         }
     
   }
 
