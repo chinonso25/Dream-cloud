@@ -8,9 +8,8 @@ export class Notes extends Component {
     }
 
     removeNote (id) {
-        firebase.database().ref('notes').child(id).remove();
+        firebase.database().ref('users/' + 'Chinonso').child(id).remove();
     }
-
 
     render() {
         return (
@@ -18,6 +17,8 @@ export class Notes extends Component {
                 <h3>Dreams</h3>
                 <div className="notes">
                     {this.props.notes.map(note => (
+                        console.log(note),
+
                         <div  className="note" key={note.id}>
                             <div className="note-title">
                                 <h3>{note.title}</h3>
@@ -25,6 +26,7 @@ export class Notes extends Component {
                             </div>
                             <div className ="note-content"> 
                                 <p>{note.note}</p>
+                                <p className ="note-content-date">{note.date}</p>
                             </div>
                             </div>
                     ))}                

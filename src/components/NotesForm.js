@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
+var moment = require('moment');
 
 export class NotesForm extends Component {
   constructor () {
     super();
     this.state = {
       title: '',
-      note: ''
+      note: '', 
+      date: ''
     }
 
     this.createNote = this.createNote.bind(this);
@@ -20,9 +22,10 @@ export class NotesForm extends Component {
 
   createNote () {
     if (this.state.title !== '' && this.state.note !== '') {
-      firebase.database().ref('users/' + 'fcscfs').push({
+      firebase.database().ref('users/' + 'Chinonso').push({
         title: this.state.title,
-        note: this.state.note
+        note: this.state.note,
+        date: moment().format('MMMM Do YYYY')
       })
     }
   }
@@ -39,6 +42,7 @@ export class NotesForm extends Component {
           <label htmlFor="noteform-note">Dream</label>
           <textarea name="noteform-note" id="noteform-note" value={this.state.note} onChange={(evt) => this.onChangeHandler(evt, 'note')}></textarea>
         </div>
+        
         <button onClick={this.createNote}>Add Dream To Journal</button>
       </section>
     )

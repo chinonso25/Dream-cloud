@@ -11,7 +11,8 @@ class App extends React.Component {
     super();
 
     this.state={
-      notes: []
+      notes: [],
+      username: 'Chinonso'
     }
   }
 
@@ -25,11 +26,13 @@ class App extends React.Component {
 
 
   listenforChange() {
-    this.db.ref('notes').on('child_added', snapshot => {
+    this.db.ref(`users/${this.state.username}`).on('child_added', snapshot => {
       let note = {
         id: snapshot.key,
         title: snapshot.val().title,
-        note: snapshot.val().note
+        note: snapshot.val().note,
+        date: snapshot.val().date,
+
       }
       let notes = this.state.notes;
       notes.push(note)
@@ -41,7 +44,7 @@ class App extends React.Component {
     })
 
 
-    this.db.ref('notes').on('child_removed', snapshot => {
+    this.db.ref(`users/${this.state.username}`).on('child_removed', snapshot => {
       let notes = this.state.notes;
       notes = notes.filter(note => note.id !== snapshot.key)
       this.setState({

@@ -95,6 +95,14 @@ main {
   padding: 15px;
 }
 
+.notes .note .note-content-date {
+  padding: 15px;
+  font-size: 11px;
+  text-align: right;
+}
+
+
+
 @media screen and (min-width: 768px) {
   .notes {
     grid-template-columns: repeat(3, 1fr);
