@@ -18,6 +18,9 @@ const styles= {
     media: {
       height: 140,
     },
+    date: {
+        marginTop:10
+    }
   };
 
 export class Notes extends Component {
@@ -50,6 +53,9 @@ export class Notes extends Component {
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
           {note.note}
+          </Typography>
+          <Typography style={styles.date} variant="overline" color="textSecondary" component="p">
+          - {note.date}
           </Typography>
         </CardContent>
       </CardActionArea>

@@ -3,9 +3,21 @@ import * as firebase from 'firebase';
 import firebaseConfig from '../index';
 import Buttons from '../components/Buttons'
 import Divider from '@material-ui/core/Divider';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import TextField from '@material-ui/core/TextField';
+
 
 
 var moment = require('moment');
+const styles = {
+  
+  text: {
+    textAlign: 'center',
+  },
+
+};
 
 export class NotesForm extends Component {
   constructor () {
@@ -45,25 +57,48 @@ export class NotesForm extends Component {
         note: this.state.note,
         date: moment().format('MMMM Do YYYY')
       })
-    }
+      this.forceUpdate()    }
+    
   }
 
   render() {
     return (
-      <section className="noteform">
-        <h3>Add Dream to Journal</h3>
+      
+
+<React.Fragment>
+<CssBaseline />
+<Container maxWidth="sm">
+<section className="noteform">
+        <h1 style={styles.text}>Add Dream to Journal</h1>
         <div className="form-group">
-          <label htmlFor="noteform-title">Dream Title</label>
-          <input type="text" id="noteform-title" name="noteform-title" value={this.state.title} onChange={(evt) => this.onChangeHandler(evt, 'title')} />
+          <TextField
+        required
+        id="noteform-title"
+        label="Dream Title"
+        defaultValue=""
+        margin="normal"
+        type="text"  name="noteform-title" value={this.state.title} onChange={(evt) => this.onChangeHandler(evt, 'title')}
+      />
         </div>
         <div className="form-group">
-          <label htmlFor="noteform-note">Dream</label>
-          <textarea name="noteform-note" id="noteform-note" value={this.state.note} onChange={(evt) => this.onChangeHandler(evt, 'note')}></textarea>
+          <TextField
+        required
+        id="noteform-note"
+        label=""
+        multiline
+        rows="4"
+        defaultValue=""
+        margin="normal"
+        type="text"  name="noteform-note" value={this.state.note} onChange={(evt) => this.onChangeHandler(evt, 'note')}
+      />
         </div>
         
         <Buttons onClick={this.createNote} tag='Add Dream To Journal'/>
         <Divider />
       </section>
+
+</Container>
+</React.Fragment>
     )
   }
 }
