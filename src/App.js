@@ -39,7 +39,6 @@ render(){
     <AuthProvider>
     <Router>
       <div>
-        <Header />
         <PrivateRoute exact path="/" component={Dreams} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />

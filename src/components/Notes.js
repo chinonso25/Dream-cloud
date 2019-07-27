@@ -1,9 +1,26 @@
 import React, { Component } from 'react'
 import * as firebase from 'firebase'
 import firebaseConfig from '../index'
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+
+const styles= {
+    card: {
+      maxWidth: 345,
+    },
+    media: {
+      height: 140,
+    },
+  };
 
 export class Notes extends Component {
-    
     constructor (props) {
         super(props);
     }
@@ -14,6 +31,8 @@ export class Notes extends Component {
     }
 
     render() {
+        const { classes } = this.props;
+
         return (
             <section className="notes-wrapper">
                 <h3>Dreams</h3>
@@ -22,16 +41,31 @@ export class Notes extends Component {
 
 
                         <div  className="note" key={note.id}>
-                            <div className="note-title">
-                                <h3>{note.title}</h3>
-                                <div className="remove" onClick={()=> this.removeNote(note.id)}>x</div>
+
+<Card className={styles.card}>
+      <CardActionArea>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {note.title}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+          {note.note}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary" onClick={()=> this.removeNote(note.id)}>
+          Delete
+        </Button>
+       
+      </CardActions>
+    </Card>      
+                            
                             </div>
-                            <div className ="note-content"> 
-                                <p>{note.note}</p>
-                                <p className ="note-content-date">{note.date}</p>
-                            </div>
-                            </div>
-                    ))}                
+                    ))}          
+
+
+                    
 
                 </div>
 
@@ -43,3 +77,5 @@ export class Notes extends Component {
 }
 
 export default Notes
+
+

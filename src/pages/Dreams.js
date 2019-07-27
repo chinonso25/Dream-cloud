@@ -3,6 +3,8 @@ import * as firebase from 'firebase';
 import firebaseConfig from "../index.js";
 import NotesForm from '../components/NotesForm';
 import Notes from '../components/Notes';
+import Header from '../components/Header'
+
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { tsConstructorType } from '@babel/types';
 
@@ -71,6 +73,7 @@ render(){
   return (
     <Router>
     <div className="App">
+    <Header />
       <main>
           
         <NotesForm />

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import firebaseConfig from '../index';
+import Buttons from '../components/Buttons'
+import Divider from '@material-ui/core/Divider';
+
 
 var moment = require('moment');
 
@@ -58,7 +61,8 @@ export class NotesForm extends Component {
           <textarea name="noteform-note" id="noteform-note" value={this.state.note} onChange={(evt) => this.onChangeHandler(evt, 'note')}></textarea>
         </div>
         
-        <button onClick={this.createNote}>Add Dream To Journal</button>
+        <Buttons onClick={this.createNote} tag='Add Dream To Journal'/>
+        <Divider />
       </section>
     )
   }
