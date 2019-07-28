@@ -1,12 +1,40 @@
 import React from 'react';
 import * as firebase from 'firebase';
 import firebaseConfig from "../index.js";
+import PropTypes from 'prop-types';
+
 import NotesForm from '../components/NotesForm';
 import Notes from '../components/Notes';
 import Header from '../components/Header'
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+
 
 import { BrowserRouter as Router} from 'react-router-dom';
 
+function ElevationScroll(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    target: window ? window() : undefined,
+  });
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 4 : 0,
+  });
+}
+
+ElevationScroll.propTypes = {
+  children: PropTypes.element.isRequired,
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window: PropTypes.func,
+};
 
 class Dreams extends React.Component {
   constructor () {
@@ -26,7 +54,6 @@ class Dreams extends React.Component {
         username: user.uid,
 
     })
-    console.log(this.state.username)
 
     
     
@@ -34,6 +61,10 @@ class Dreams extends React.Component {
     
   }
 
+   logoutUser(){
+    firebaseConfig.auth().signOut();
+   }
+  
   
 
   listenforChange() {
