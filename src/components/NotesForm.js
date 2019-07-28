@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import firebaseConfig from '../index';
 import Buttons from '../components/Buttons'
-import Divider from '@material-ui/core/Divider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
@@ -15,6 +14,11 @@ const styles = {
   text: {
     textAlign: 'center',
   },
+  button: {
+    justifyContent: 'center',
+    alignItems:'center',
+    display: 'flex',
+  }
 
 };
 
@@ -78,7 +82,7 @@ export class NotesForm extends Component {
           <TextField
         required
         id="noteform-title"
-        label="Dream Title"
+        label="Dream Title 💤"
         defaultValue=""
         margin="normal"
         type="text"  name="noteform-title" value={this.state.title} onChange={(evt) => this.onChangeHandler(evt, 'title')}
@@ -88,7 +92,7 @@ export class NotesForm extends Component {
           <TextField
         required
         id="noteform-note"
-        label=""
+        label="What you dreamt 😴"
         multiline
         rows="4"
         defaultValue=""
@@ -96,9 +100,9 @@ export class NotesForm extends Component {
         type="text"  name="noteform-note" value={this.state.note} onChange={(evt) => this.onChangeHandler(evt, 'note')}
       />
         </div>
-        
-        <Buttons onClick={this.createNote} tag='Add Dream To Journal'/>
-        <Divider />
+        <div style={styles.button}>
+        <Buttons onClick={this.createNote} tag='Add Dream To Journal 💭'/>
+        </div>
       </section>
 
 </Container>

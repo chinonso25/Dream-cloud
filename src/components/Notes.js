@@ -7,6 +7,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+
 
 
 const styles= {
@@ -18,6 +20,13 @@ const styles= {
     },
     date: {
         marginTop:10
+    },
+    dreams: {
+      display: 'flex',
+      justifyContent: 'center',
+      textAlign:'center',
+      alignItems:'center',
+      fontSize:24
     }
   };
 
@@ -32,8 +41,12 @@ export class Notes extends Component {
     render() {
 
         return (
+          <div>
+          <Divider />
             <section className="notes-wrapper">
+              <div style={styles.dreams}>
                 <h3>Dreams</h3>
+                </div>
                 <div className="notes">
                     {this.props.notes.map(note => (
 
@@ -45,16 +58,21 @@ export class Notes extends Component {
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {note.title}
+
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
           {note.note}
           </Typography>
           <Typography style={styles.date} variant="overline" color="textSecondary" component="p">
           - {note.date}
+
           </Typography>
         </CardContent>
       </CardActionArea>
+      <Divider />
+
       <CardActions>
+
         <Button size="small" color="primary" onClick={()=> this.removeNote(note.id)}>
           Delete
         </Button>
@@ -73,6 +91,7 @@ export class Notes extends Component {
 
 
             </section>
+            </div>
         )
     }
 }

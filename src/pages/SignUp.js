@@ -31,6 +31,11 @@ const styles = {
   form: {
     display: 'flex',
     flexDirection:'column',
+  },
+  button: {
+    justifyContent: 'center',
+    alignItems:'center',
+    display: 'flex',
   }
 };
 
@@ -79,8 +84,10 @@ const SignUp = ({ history }) => {
         margin="normal"
         name="password" type="password" placeholder="Password"
       />
-
-<Buttons style={styles.text} type="submit" tag='Sign Up' />      </form>
+      <div style={styles.button}>
+<Buttons  type="submit" tag='Sign Up' />   
+</div>
+   </form>
       </div>
       </Container>
     </React.Fragment>

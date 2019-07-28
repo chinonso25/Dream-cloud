@@ -34,6 +34,11 @@ const styles = {
   form: {
     display: 'flex',
     flexDirection:'column',
+  },
+  button: {
+    justifyContent: 'center',
+    alignItems:'center',
+    display: 'flex',
   }
 };
 
@@ -104,8 +109,9 @@ const Login = ({ history }) => {
         margin="normal"
         name="password" type="password" placeholder="Password"
       />
-       
-        <Buttons style={styles.text} type="submit" tag='Log In' />
+       <div style={styles.button}>
+        <Buttons  type="submit" tag='Log In' />
+        </div>
       </form>
       </div>
       </Container>
