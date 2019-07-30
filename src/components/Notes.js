@@ -70,7 +70,7 @@ export class Notes extends Component {
                         color="textSecondary"
                         component="p"
                       >
-                        - {note.date}
+                        - {note.author}
                       </Typography>
                     </CardContent>
                   </CardActionArea>
