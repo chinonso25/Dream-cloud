@@ -1,15 +1,15 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
-    alignItems: 'center'
+    alignItems: "center"
   },
   input: {
-    display: 'none',
-  },
+    display: "none"
+  }
 }));
 
 export default function Buttons(props) {
@@ -17,8 +17,13 @@ export default function Buttons(props) {
 
   return (
     <div>
-      
-      <Button variant="contained" color="primary"  type={props.type} className={classes.button} onClick={props.onClick}>
+      <Button
+        variant="contained"
+        color="primary"
+        type={props.type}
+        className={classes.button}
+        onClick={props.onClick}
+      >
         {props.tag}
       </Button>
     </div>

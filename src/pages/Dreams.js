@@ -1,15 +1,14 @@
-import React from 'react';
-import * as firebase from 'firebase';
+import React from "react";
+import * as firebase from "firebase";
 import firebaseConfig from "../index.js";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import NotesForm from '../components/NotesForm';
-import Notes from '../components/Notes';
-import Header from '../components/Header'
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import NotesForm from "../components/NotesForm";
+import Notes from "../components/Notes";
+import Header from "../components/Header";
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 
-
-import { BrowserRouter as Router} from 'react-router-dom';
+import { BrowserRouter as Router } from "react-router-dom";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -19,11 +18,11 @@ function ElevationScroll(props) {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
-    target: window ? window() : undefined,
+    target: window ? window() : undefined
   });
 
   return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
+    elevation: trigger ? 4 : 0
   });
 }
 
@@ -33,86 +32,73 @@ ElevationScroll.propTypes = {
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
-  window: PropTypes.func,
+  window: PropTypes.func
 };
 
 class Dreams extends React.Component {
-  constructor () {
+  constructor() {
     super();
 
-    this.state={
+    this.state = {
       notes: [],
-      username: '',
-      
-    }
+      username: ""
+    };
   }
 
-  componentDidMount(){
-    this.db= firebase.database();
+  componentDidMount() {
+    this.db = firebase.database();
     let user = firebaseConfig.auth().currentUser;
     this.setState({
-        username: user.uid,
+      username: user.uid
+    });
 
-    })
-
-    
-    
     this.listenforChange();
-    
   }
 
-   logoutUser(){
+  logoutUser() {
     firebaseConfig.auth().signOut();
-   }
-  
-  
+  }
 
   listenforChange() {
     let user = firebaseConfig.auth().currentUser;
 
-    this.db.ref(`users/${user.uid}`).on('child_added', snapshot => {
+    this.db.ref(`users/${user.uid}`).on("child_added", snapshot => {
       let note = {
         id: snapshot.key,
         title: snapshot.val().title,
         note: snapshot.val().note,
-        date: snapshot.val().date,
-
-      }
+        date: snapshot.val().date
+      };
       let notes = this.state.notes;
-      notes.push(note)
+      notes.push(note);
 
       this.setState({
         notes: notes
       });
+    });
 
-    })
-
-
-    this.db.ref(`users/${user.uid}`).on('child_removed', snapshot => {
+    this.db.ref(`users/${user.uid}`).on("child_removed", snapshot => {
       let notes = this.state.notes;
-      notes = notes.filter(note => note.id !== snapshot.key)
+      notes = notes.filter(note => note.id !== snapshot.key);
       this.setState({
         notes: notes
       });
-
-    })
+    });
   }
 
-render(){
-
-  return (
-    <Router>
-    <div className="App">
-    <Header />
-      <main>
-          
-        <NotesForm />
-        <Notes notes={this.state.notes}/>
-      </main>
-    </div>
-    </Router>
-  );
-}
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Header />
+          <main>
+            <NotesForm />
+            <Notes notes={this.state.notes} />
+          </main>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default Dreams;
