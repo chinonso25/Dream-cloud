@@ -1,9 +1,8 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
-import firebaseConfig from "../index.js";
-// import { AuthContext } from "../Auth.js";
-import Header from "../components/Header";
-import Buttons from "../components/Buttons";
+import firebaseConfig from "../../index.js";
+import Header from "../../components/Header";
+import Buttons from "../../components/Buttons";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -39,27 +38,27 @@ const styles = {
 };
 
 const Login = ({ history }) => {
-  // const handleLogin = useCallback(
-  //   async event => {
-  //     event.preventDefault();
-  //     const { email, password } = event.target.elements;
-  //     try {
-  //       await firebaseConfig
-  //         .auth()
-  //         .signInWithEmailAndPassword(email.value, password.value);
-  //       history.push("/");
-  //     } catch (error) {
-  //       alert(error);
-  //     }
-  //   },
-  //   [history]
-  // );
+//   const handleLogin = useCallback(
+//     async event => {
+//       event.preventDefault();
+//       const { email, password } = event.target.elements;
+//       try {
+//         await firebaseConfig
+//           .auth()
+//           .signInWithEmailAndPassword(email.value, password.value);
+//         history.push("/");
+//       } catch (error) {
+//         alert(error);
+//       }
+//     },
+//     [history]
+//   );
 
-  // const { currentUser } = useContext(AuthContext);
+//   const { currentUser } = useContext(AuthContext);
 
-  // if (currentUser) {
-  //   return <Redirect to="/" />;
-  // }
+//   if (currentUser) {
+//     return <Redirect to="/" />;
+//   }
 
   return (
     <div>
@@ -70,31 +69,20 @@ const Login = ({ history }) => {
         <Container maxWidth="sm">
           <h1 style={styles.text}>Log in</h1>
           <div style={styles.form}>
-            <form style={styles.form} onSubmit={() => console.log()}>
+            <form style={styles.form} onSubmit={null}>
               <TextField
                 required
                 id="standard-required"
-                label="Email"
+                label="Room Key"
                 defaultValue=""
                 className={styles.textField}
                 margin="normal"
-                name="email"
-                type="email"
-                placeholder="Email"
-              />
-              <TextField
-                required
-                id="standard-required"
-                label="Password"
-                defaultValue=""
-                className={styles.textField}
-                margin="normal"
-                name="password"
-                type="password"
-                placeholder="Password"
+                name="Room Key"
+                type="Room Key"
+                placeholder="Room Key"
               />
               <div style={styles.button}>
-                <Buttons type="submit" tag="Log In" />
+                <Buttons type="submit" tag="Enter Room" />
               </div>
             </form>
           </div>

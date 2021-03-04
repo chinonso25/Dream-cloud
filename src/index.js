@@ -8,13 +8,15 @@ import "typeface-roboto";
 require("firebase/auth");
 
 const firebaseConfig = firebase.initializeApp({
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID
+
+    apiKey: "AIzaSyD1scAfo3m9WWZn7iGnVZ-yMFetpLt3wsQ",
+    authDomain: "youth-anon-questions.firebaseapp.com",
+    projectId: "youth-anon-questions",
+    storageBucket: "youth-anon-questions.appspot.com",
+    messagingSenderId: "917671523011",
+    appId: "1:917671523011:web:e641fb8ac9b5c1fcede876",
+    measurementId: "G-1S8C20RBSV"
+
 });
 
 // Initialize Firebase
